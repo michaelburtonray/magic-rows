@@ -15,7 +15,8 @@
 
     // settings
     var settings = $.extend({
-      max_height: 225
+      max_height: 225,
+      margin: 6
     }, options);
 
 
@@ -27,8 +28,6 @@
 
     // public methods
     this.init = function() {
-
-      console.log(this);
 
       var $children = $(this).children();
 
@@ -44,31 +43,53 @@
 
       });
 
-      console.log(['images_array',images_array]);
-
       return this;
     }
 
     this.trigger = function() {
-      console.log(this.width());
-      // Row queue
+      var parent_width = this.width();
 
-      // while(images_array.length > 0) {
+      // Row Loop
+      while(images_array.length > 0) {
 
-      //   var image = images_array.shift();
+        // current image
+        var image = images_array.shift();
 
-      //   row.push(image);
+        // push onto row
+        row.push(image);
 
-      //   var denominator
+        // calculate height
+        var denominator = 0;
 
-      //   for(var i = 0;i < row.length;i++) {
-      //     denominator += row[i];
-      //   }
+        for(var i=0; i < row.length; i++) {
+          denominator += row[i].aspect_ratio;
+        }
 
-      //   // var height = 
+        var whitespace = settings.margin * row.length * 2;
 
+        var height = (parent_width - whitespace)/denominator;
 
-      // }
+        if(height <= settings.max_height) {
+
+          // iterate through row array and set height
+          for(var i=0; i < row.length; i++) {
+            var index = row[i].index;
+
+            // set the height for the image in the row array
+
+            console.log($(this).height);
+
+            $(this).children().get(index).style.height = height + 'px';
+            $(this).children().get(index).style.margin = settings.margin + 'px';
+
+            // $(this).children().index(index).height(height);
+          }
+
+          // clear our row array
+          row = [];
+        }
+
+      }
 
       return this;
     }
@@ -76,7 +97,5 @@
     return this.init().trigger();
 
   };
-
-
 
 })(jQuery);
