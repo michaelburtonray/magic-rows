@@ -1,8 +1,9 @@
 ;(function($) {
-  var _$this = $(this);
-
 
   $.fn.magicRows = function ( options ) {
+ 
+    this.addClass('loading');
+
     // support multiple elements
     if (this.length > 1){
       this.each(function() { $(this).magicRows(options) });
@@ -45,17 +46,13 @@
 
 
       this.trigger();
-
+      this.removeClass('loading');
       var container = this;
-
-      $(this).on('resize',this.trigger());
-
 
       return this;
     }
 
     this.trigger = function() {
-      console.log('trigger function triggered!');
       var parent_width = this.width();
 
       //  Row Loop
@@ -77,9 +74,6 @@
         var whitespace = (settings.margin * row.length * 2) - (2 * settings.margin);
 
         var height = Math.floor((parent_width - whitespace)/denominator) - 1;
-
-        console.log(['height',height]);
-
 
         if(height <= settings.max_height) {
 
@@ -119,12 +113,39 @@
       // remaining images
       if(row.length > 0) {
         for(var i=0; i < row.length; i++) {
-          var index = row[i].index;
-          $(this).children().get(index).style.height = settings.max_height + 'px';
+
+            var index = row[i].index;
+
+            $(this).children().get(index).style.height = settings.max_height + 'px';
+
+            var margin;
+
+            // first image in row
+            if(i == 0) {
+              // $(this).children().get(index).style.clear = 'left';
+              margin = settings.margin + 'px ' + settings.margin + 'px ' + settings.margin + 'px 0px';
+
+            // last image in row
+            } else if(i == row.length - 1) {
+              margin = settings.margin + 'px 0 ' + settings.margin + 'px ' + settings.margin + 'px';
+
+            // everything else
+            } else {
+              margin = settings.margin + 'px';
+            }
+            $(this).children().get(index).style.margin = margin;              
+
+
+
+
+
+
+
+
+
+
         }
       }
-
-      console.log(['row.length',row.length])
 
       return this;
     }
