@@ -1,17 +1,37 @@
 
 <style type="text/css">
+
+  body {
+    margin: 0;
+  }
+
+  .images {
+    text-align: center;
+  }
+
   img {
-    display: inline-block;
-    margin: .5em 0;
+    display: block;
+    float: left;
   }
 </style>
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
 <script src="js/magic.rows.js"></script>
 <script>
 
+  var magic_rows;
+
   $(window).on('load',function(){
-    $('.images').magicRows();
+
+    magic_rows = $('.images').magicRows();
+
   });
+
+  $(window).on('resize',function(){
+
+    magic_rows = $('.images').magicRows();    
+
+  });
+
 
 </script>
 

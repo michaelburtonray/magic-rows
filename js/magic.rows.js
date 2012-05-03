@@ -43,13 +43,22 @@
 
       });
 
+
+      this.trigger();
+
+      var container = this;
+
+      $(this).on('resize',this.trigger());
+
+
       return this;
     }
 
     this.trigger = function() {
+      console.log('trigger function triggered!');
       var parent_width = this.width();
 
-      // Row Loop
+      //  Row Loop
       while(images_array.length > 0) {
 
         // current image
@@ -65,9 +74,12 @@
           denominator += row[i].aspect_ratio;
         }
 
-        var whitespace = settings.margin * row.length * 2;
+        var whitespace = (settings.margin * row.length * 2) - (2 * settings.margin);
 
-        var height = (parent_width - whitespace)/denominator;
+        var height = Math.floor((parent_width - whitespace)/denominator) - 1;
+
+        console.log(['height',height]);
+
 
         if(height <= settings.max_height) {
 
@@ -75,14 +87,26 @@
           for(var i=0; i < row.length; i++) {
             var index = row[i].index;
 
-            // set the height for the image in the row array
-
-            console.log($(this).height);
 
             $(this).children().get(index).style.height = height + 'px';
-            $(this).children().get(index).style.margin = settings.margin + 'px';
 
-            // $(this).children().index(index).height(height);
+            var margin;
+
+            // first image in row
+            if(i == 0) {
+              // $(this).children().get(index).style.clear = 'left';
+              margin = settings.margin + 'px ' + settings.margin + 'px ' + settings.margin + 'px 0px';
+
+            // last image in row
+            } else if(i == row.length - 1) {
+              margin = settings.margin + 'px 0 ' + settings.margin + 'px ' + settings.margin + 'px';
+
+            // everything else
+            } else {
+              margin = settings.margin + 'px';
+            }
+            $(this).children().get(index).style.margin = margin;              
+
           }
 
           // clear our row array
@@ -91,10 +115,21 @@
 
       }
 
+
+      // remaining images
+      if(row.length > 0) {
+        for(var i=0; i < row.length; i++) {
+          var index = row[i].index;
+          $(this).children().get(index).style.height = settings.max_height + 'px';
+        }
+      }
+
+      console.log(['row.length',row.length])
+
       return this;
     }
 
-    return this.init().trigger();
+    return this.init();
 
   };
 
