@@ -17,7 +17,7 @@
     // settings
     var settings = $.extend({
       max_height: 225,
-      margin: 0
+      margin: 6
     }, options);
 
 
@@ -46,8 +46,6 @@
         console.log(image);
 
       });
-
-      // console.log(images_array);
 
       this.trigger();
       this.removeClass('loading');
@@ -114,18 +112,17 @@
 
 
       // remaining images
-      if(row.length > 0) {
+      if(row.length > 1) {
         for(var i=0; i < row.length; i++) {
 
             var index = row[i].index;
 
-            $(this).children().get(index).style.height = settings.max_height + 'px';
+            $(this).find('a:eq(' + index + ')').find('img')[0].style.height = height + 'px';
 
             var margin;
 
             // first image in row
             if(i == 0) {
-              // $(this).children().get(index).style.clear = 'left';
               margin = settings.margin + 'px ' + settings.margin + 'px ' + settings.margin + 'px 0px';
 
             // last image in row
@@ -136,13 +133,7 @@
             } else {
               margin = settings.margin + 'px';
             }
-            $(this).children().get(index).style.margin = margin;              
-
-
-
-
-
-
+            $(this).find('a:eq(' + index + ')').find('img')[0].style.margin = margin;
 
 
 

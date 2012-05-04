@@ -16,6 +16,7 @@
     transition: opacity .5s ease-out;
   }
   .images.loading {
+    opacity: 0;
     -webkit-transition: none;
     -moz-transition: none;
     -ms-transition: none;
@@ -29,6 +30,12 @@
 
   .images a img {
     display: block;
+  }
+
+  .images:after {
+    content: ".";
+    display: inline-block;
+    width: 100%;
   }
 
 </style>
