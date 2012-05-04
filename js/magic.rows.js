@@ -5,7 +5,8 @@
   $.fn.magicRows = function ( options ) {
     
     // hide everything while it is all being shilfted around
-    this.addClass('loading images');
+    this.addClass('images');
+    $('html').addClass('loading')
 
     // apply css styles to container, anchor, and images
     this.css({
@@ -61,9 +62,7 @@
       });
 
       this.trigger();
-      this.removeClass('loading');
-      var container = this;
-
+      $('html').removeClass('loading');
       return this;
     }
 

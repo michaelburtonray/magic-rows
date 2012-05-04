@@ -1,12 +1,12 @@
-
+<html class="loading">
 <style type="text/css">
 
   body {
+    background: grey;
     margin: 0 10%;
   }
 
-  // Optional CSS to have rendered images fade in nice
-  .images {
+  html .images {
     opacity: 1;
     -webkit-transition: opacity 1s ease-in;
     -moz-transition: opacity .5s ease-out;
@@ -14,7 +14,7 @@
     -o-transition: opacity .5s ease-out;
     transition: opacity .5s ease-out;
   }
-  .images.loading {
+  html.loading .images {
     opacity: 0;
     -webkit-transition: none;
     -moz-transition: none;
@@ -25,7 +25,7 @@
 
 </style>
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-<script src="js/magic.rows.js"></script>
+<script src="js/magic.rows.min.js"></script>
 <script>
 
   var magic_rows;
@@ -40,9 +40,7 @@
   });
 
   $(window).on('resize',function(){
-
     magic_rows = $('.images').magicRows();
-
   });
 
 
@@ -125,3 +123,4 @@
   <a href="/photograph/79"><img src='http://jasonnocito.vaesite.net/__data/a37c2c7e74636191cf918aec8556f9e6.jpg' /></a>
   <a href="/photograph/80"><img src='http://jasonnocito.vaesite.net/__data/42778ff2829641a56a9f79b46502c5e3.jpg' /></a>
 </div>
+</html>
