@@ -112,12 +112,14 @@
 
 
       // remaining images
-      if(row.length > 1) {
+      if(row.length > 0) {
         for(var i=0; i < row.length; i++) {
 
             var index = row[i].index;
 
-            $(this).find('a:eq(' + index + ')').find('img')[0].style.height = height + 'px';
+
+            if(row.length > 1)
+              $(this).find('a:eq(' + index + ')').find('img')[0].style.height = height + 'px';
 
             var margin;
 
@@ -134,9 +136,6 @@
               margin = settings.margin + 'px';
             }
             $(this).find('a:eq(' + index + ')').find('img')[0].style.margin = margin;
-
-
-
 
         }
       }
