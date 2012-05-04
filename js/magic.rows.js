@@ -1,7 +1,10 @@
-;(function($) {
+(function( window, $, undefined ) {
+
+  'use strict';
 
   $.fn.magicRows = function ( options ) {
- 
+    
+    // hide everything while it is all being shilfted around
     this.addClass('loading');
 
     // support multiple elements
@@ -32,6 +35,8 @@
 
       var $children = $(this).find('img');
 
+      // set up the images_array array that stores information for
+      // each image to be resized
       $children.each(function(){
         var $this = $(this);
 
@@ -42,8 +47,6 @@
           width: $this.width()
         };
         images_array.push(image);
-
-        console.log(image);
 
       });
 
@@ -147,4 +150,4 @@
 
   };
 
-})(jQuery);
+})( window, jQuery);
