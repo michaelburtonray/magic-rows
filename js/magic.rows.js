@@ -5,7 +5,22 @@
   $.fn.magicRows = function ( options ) {
     
     // hide everything while it is all being shilfted around
-    this.addClass('loading');
+    this.addClass('loading images');
+
+    // apply css styles to container, anchor, and images
+    this.css({
+      'font-size': 0,
+      'text-align': 'justify'
+    }).children().css({
+      'display': 'inline-block'
+    }).find('img').css({
+      'display':'block'
+    });
+
+    // Hack to get the last line of container to be text-align: justify
+    var $style_hack = $("<style type='text/css'>.images:after { content: '.'; display: inline-block; width: 100%; }</style>");
+    $style_hack.appendTo($('head'));
+
 
     // support multiple elements
     if (this.length > 1){
@@ -22,11 +37,6 @@
       max_height: 225,
       margin: 6
     }, options);
-
-
-
-    // private methods
-
 
 
 

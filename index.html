@@ -5,9 +5,8 @@
     margin: 0 10%;
   }
 
+  // Optional CSS to have rendered images fade in nice
   .images {
-    font-size: 0;
-    text-align: justify;
     opacity: 1;
     -webkit-transition: opacity 1s ease-in;
     -moz-transition: opacity .5s ease-out;
@@ -24,23 +23,9 @@
     transition: none;
   }
 
-  .images a {
-    display: inline-block;
-  }
-
-  .images a img {
-    display: block;
-  }
-
-  .images:after {
-    content: ".";
-    display: inline-block;
-    width: 100%;
-  }
-
 </style>
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js'></script>
-<script src="js/magic.rows.min.js"></script>
+<script src="js/magic.rows.js"></script>
 <script>
 
   var magic_rows;
