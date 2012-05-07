@@ -1,4 +1,5 @@
-(function( window, $, undefined ) {
+/* Magic Rows | github.com/michaelburtonray/magic-rows */
+;(function( window, $, undefined ) {
 
   'use strict';
 
