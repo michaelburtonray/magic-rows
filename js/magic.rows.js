@@ -13,7 +13,7 @@
     this.css({
       'font-size': 0,
       'text-align': 'justify'
-    }).children().css({
+    }).find('*:not(img)').css({
       'display': 'inline-block'
     }).find('img').css({
       'display':'block'
@@ -37,7 +37,8 @@
     // settings
     var settings = $.extend({
       max_height: 225,
-      margin: 6
+      margin: 6,
+      selector: this.selector
     }, options);
 
 
@@ -55,7 +56,7 @@
         var image = {
           aspect_ratio: $this.width() / $this.height(),
           height: $this.height(),
-          index: $this.parent().index(),
+          index: $this.parentsUntil(settings.selector).last().index(),
           width: $this.width()
         };
         images_array.push(image);
